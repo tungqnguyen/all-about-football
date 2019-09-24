@@ -1,0 +1,11 @@
+.swiperView {
+  height: 250px;
+  width:150px;
+  background-color: yellow;
+}
+.matchInfo {
+  display: flex;
+  height:60%;
+  align-items: center;
+  justify-content: center;
+}

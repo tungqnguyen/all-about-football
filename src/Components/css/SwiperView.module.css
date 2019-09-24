@@ -1,0 +1,17 @@
+.swiperView {
+  height: 300px;
+  width:200px;
+  background-color: yellow;
+}
+.matchInfo {
+  display: flex;
+  height:60%;
+  align-items: center;
+  justify-content: center;
+}
+.iconLogo {
+  /* width: 15vw;
+  height: 15vh; */
+  width: 100px;
+  height: 100px;
+}

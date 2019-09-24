@@ -1,0 +1,4 @@
+export const GET_MATCH = 'GET_MATCH';
+export const DISPLAY_MATCH = 'DISPLAY_MATCH';
+export const DISPLAY_HIGHLIGHTS = 'DISPLAY_HIGHLIGHTS';
+
