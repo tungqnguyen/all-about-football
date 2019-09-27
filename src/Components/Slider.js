@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Swiper from 'react-id-swiper';
 import SwiperView from './SwiperView'
-// import styles from './Slider.module.css';
 
 
 const Slider = (props) => {
@@ -12,18 +11,35 @@ const Slider = (props) => {
       el: '.swiper-pagination',
       clickable: true,
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
+    // navigation: {
+    //   nextEl: '.swiper-button-next',
+    //   prevEl: '.swiper-button-prev'
+    // },
   }
+  const [swiper, updateSwiper] = useState(null);
+  const goNext = () => {
+    if (swiper !== null) {
+      swiper.slideNext();
+    }
+  };
+  const goPrev = () => {
+    if (swiper !== null) {
+      swiper.slidePrev();
+    }
+  };
 
   return (
-    <Swiper {...params}>
-      {props.matches.map((fixture, i) => {
-        return <SwiperView key={i}  fixture = {fixture}/>
-      })}
-    </Swiper>
+    <div >
+      <div style={{display:'flex', justifyContent:'flex-end'}}>
+        <button onClick={goPrev}>Prev</button>
+        <button onClick={goNext}>Next</button>    
+      </div>
+      <Swiper {...params} getSwiper={updateSwiper}>
+        {props.matches.map((fixture, i) => {
+          return <SwiperView key={i}  fixture = {fixture}/>
+        })}
+      </Swiper>
+    </div>
   )
 };
 

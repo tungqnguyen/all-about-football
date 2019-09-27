@@ -4,7 +4,9 @@ import VideoHighlights from '../../Components/VideoHighlights'
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/actionCreators';
 import VideoModal from '../../Components//VideoModal';
+// import VideoModal1 from '../../Components//VideoModal1';
 import MatchContext from '../../context/MatchContext';
+import WithPanel from '../../hoc/WithPanel';
 
 class Matches extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -17,6 +19,8 @@ class Matches extends Component {
     this.state = {
       matches: null,
       modal:false,
+      currentHighlight:`<div></div>`,
+      title:null,
     }
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -24,8 +28,6 @@ class Matches extends Component {
   componentDidMount() {
     this.props.onGetMatches();
     this.props.onGetHighlights();
-    // this.findNextFixture(dummyData.api.fixtures)
-
   }
 
   findNextFixture(matchData) {
@@ -50,10 +52,12 @@ class Matches extends Component {
     }
     return [];
   }
-  toggleModal(){
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }))
+  toggleModal(embed=`<div></div>`, title=null){
+    this.setState({
+      modal: !this.state.modal,
+      currentHighlight: embed,
+      title
+    })
   }
   render () {
     let slider = null;
@@ -68,9 +72,21 @@ class Matches extends Component {
       highlights = <VideoHighlights highlights={this.props.highlights} toggleModal = {this.toggleModal}/>
     }
     return (
-      <div>
-      {slider}
-      <div style={{marginTop:10}}>{highlights}</div>
+      <div style={{fontFamily:'Cursive'}}>
+        <WithPanel>
+          <div style={{textAlign:'center', marginBottom:10}}>
+            Upcoming Matches
+          </div>  
+          {slider}
+        </WithPanel>
+        <div style={{fontSize:20, marginTop: 5, marginBottom: 5, 
+          paddingTop: 10, paddingBottom: 10 ,backgroundColor:'#006C87', color:'white'}}>Latest Highlights</div>
+        <VideoModal toggleModal={this.toggleModal} modal={this.state.modal} 
+          video={{ currentHighlight:this.state.currentHighlight,
+                    title:this.state.title }}/>
+        <MatchContext.Provider value ={{ toggleModal: this.toggleModal }}>
+          <div style={{marginTop:10,}}>{highlights}</div>
+        </MatchContext.Provider>
       </div>
 
       )

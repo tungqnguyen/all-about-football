@@ -1,8 +1,6 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import SwiperHighlight from './SwiperHighlight'
-import styles from './css/SwiperHighlight.module.css';
-
 
 const VideoHighlights = (props) => {
   const params = {

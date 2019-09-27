@@ -1,11 +1,13 @@
 .swiperView {
+  display:flex;
+  flex-direction: column;
   height: 300px;
   width:200px;
-  background-color: yellow;
+  background-color: #F9FBDC;
 }
 .matchInfo {
   display: flex;
-  height:60%;
+  height:50%;
   align-items: center;
   justify-content: center;
 }
