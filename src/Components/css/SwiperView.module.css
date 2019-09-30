@@ -4,6 +4,7 @@
   height: 300px;
   width:200px;
   background-color: #F9FBDC;
+  border-radius:3%
 }
 .matchInfo {
   display: flex;

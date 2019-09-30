@@ -65,7 +65,6 @@ class Matches extends Component {
     if (this.props.fetched) {
       const nextMatch = this.findNextFixture(this.props.matches);
       const fixtureArray = this.getDisplayFixtures(nextMatch);
-      // console.log('match 2b displayed', fixtureArray);
       slider = <Slider matches = {fixtureArray}/>;
     }
     if (this.props.fetchedHighlights) {
@@ -73,20 +72,23 @@ class Matches extends Component {
     }
     return (
       <div style={{fontFamily:'Cursive'}}>
-        <WithPanel>
-          <div style={{textAlign:'center', marginBottom:10}}>
+        <VideoModal toggleModal={this.toggleModal} modal={this.state.modal} 
+              video={{ currentHighlight:this.state.currentHighlight,
+              title:this.state.title }}/>
+        <WithPanel style={{marginTop:20}}>
+          <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
             Upcoming Matches
           </div>  
           {slider}
         </WithPanel>
-        <div style={{fontSize:20, marginTop: 5, marginBottom: 5, 
-          paddingTop: 10, paddingBottom: 10 ,backgroundColor:'#006C87', color:'white'}}>Latest Highlights</div>
-        <VideoModal toggleModal={this.toggleModal} modal={this.state.modal} 
-          video={{ currentHighlight:this.state.currentHighlight,
-                    title:this.state.title }}/>
-        <MatchContext.Provider value ={{ toggleModal: this.toggleModal }}>
-          <div style={{marginTop:10,}}>{highlights}</div>
-        </MatchContext.Provider>
+        <WithPanel style={{marginTop:20, marginBottom:20}}>
+          <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
+            Latest Highlights
+          </div>
+          <MatchContext.Provider value ={{ toggleModal: this.toggleModal }}>
+            <div style={{marginTop:10,}}>{highlights}</div>
+          </MatchContext.Provider>
+        </WithPanel>
       </div>
 
       )

@@ -2,6 +2,6 @@
 import React from 'react';
 import styles from './Panel.module.css'
 
-const withPanel = props => <div className={styles.panel}>{props.children}</div>
+const withPanel = props => <div className={styles.panel} style={props.style}>{props.children}</div>
 
 export default withPanel;

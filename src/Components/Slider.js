@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import Swiper from 'react-id-swiper';
 import SwiperView from './SwiperView'
+import './css/SwiperHighlight.css'
+import leftArrow from '../assets/img/left1.svg';
+import rightArrow from '../assets/img/right1.svg';
 
 
 const Slider = (props) => {
@@ -11,10 +14,6 @@ const Slider = (props) => {
       el: '.swiper-pagination',
       clickable: true,
     },
-    // navigation: {
-    //   nextEl: '.swiper-button-next',
-    //   prevEl: '.swiper-button-prev'
-    // },
   }
   const [swiper, updateSwiper] = useState(null);
   const goNext = () => {
@@ -31,8 +30,10 @@ const Slider = (props) => {
   return (
     <div >
       <div style={{display:'flex', justifyContent:'flex-end'}}>
-        <button onClick={goPrev}>Prev</button>
-        <button onClick={goNext}>Next</button>    
+      <div style={{marginRight:10, marginBottom:10}}>
+        <img onClick={goPrev} alt="" src={leftArrow} style={{height:30, width:30}}/>
+        <img onClick={goNext} alt="" src={rightArrow} style={{height:30, width:30, marginLeft: 5}}/>
+      </div>  
       </div>
       <Swiper {...params} getSwiper={updateSwiper}>
         {props.matches.map((fixture, i) => {
