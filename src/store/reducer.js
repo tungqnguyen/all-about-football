@@ -4,6 +4,8 @@ const initialStates = {
   matches: null,
   fetched: false,
   fetchedHighlights: false,
+  standings: null,
+  fetchedStandings: false
 }
 
 const reducer = (state = initialStates, action) => {
@@ -19,6 +21,12 @@ const reducer = (state = initialStates, action) => {
         ...state,
         highlights: action.highlights,
         fetchedHighlights: action.fetchedHighlights
+      }
+    case actionTypes.DISPLAY_STANDINGS:
+      return {
+        ...state,
+        standings: action.standings,
+        fetchedStandings: action.fetchedStandings
       }
       default:
         return state;

@@ -35,11 +35,12 @@
 
 
 .Header {
+  font-family: cursive;
   height: 56px;
   width: 100%;
   top: 0;
   left: 0;
-  background-color: #1d91919c;
+  background-color: #3c70a4;
   display: flex;
   justify-content: space-between;
   align-items: center;

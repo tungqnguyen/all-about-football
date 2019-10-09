@@ -75,13 +75,13 @@ class Matches extends Component {
         <VideoModal toggleModal={this.toggleModal} modal={this.state.modal} 
               video={{ currentHighlight:this.state.currentHighlight,
               title:this.state.title }}/>
-        <WithPanel style={{marginTop:20}}>
+        <WithPanel style={{marginTop:20, paddingBottom: 30}}>
           <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
             Upcoming Matches
           </div>  
           {slider}
         </WithPanel>
-        <WithPanel style={{marginTop:20, marginBottom:20}}>
+        <WithPanel style={{marginTop:20, marginBottom:20, paddingBottom: 30}}>
           <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
             Latest Highlights
           </div>

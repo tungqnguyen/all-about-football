@@ -1,12 +1,10 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalFooter } from 'reactstrap';
 import parse from 'html-react-parser';
-import styles from './css/SwiperHighlight.module.css'
 
 class VideoModal extends React.Component {
   render() {
-    console.log('hi', this.props.video.currentHighlight);
     return (
       <div>
         <Modal isOpen={this.props.modal} toggle={()=> this.props.toggleModal()} 

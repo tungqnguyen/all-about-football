@@ -10,7 +10,7 @@ const SwiperHighlight = (props) => {
 		<MatchContext.Consumer>
 			{(context) => 
 				<div className={`swiper-slide ${styles.swiperView} itemsContainer`} onClick={()=> context.toggleModal(embed, title)}>
-					<div class="play"><img src={playButton} style={{height:60, width:60}} alt="" /> </div>
+					<div className="play"><img src={playButton} style={{height:60, width:60}} alt="" /> </div>
 					<img className='image' src={props.highlight.thumbnail} width='100%' height='85%' alt="" />
 					<div style={{textAlign:'center'}}>{props.highlight.title}</div>
 				</div>}

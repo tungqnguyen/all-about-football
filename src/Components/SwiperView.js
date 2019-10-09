@@ -1,15 +1,8 @@
 import React from 'react';
-import * as logo from './teamNameToAssetMap';
 import styles from './css/SwiperView.module.css';
+import {matchLogo} from '.././util/util'
 
-const matchLogo = (teamName) => {
-  const res = Object.keys(logo).reduce((match, keyName) => {
-    const tmp = teamName.replace(/\s+/g,'')
-    if (tmp.toLowerCase().includes(keyName.toLowerCase())) return keyName;
-    else return match;
-  })
-  return logo[res];
-}
+
 const displayTimeOrResult = (fixture) => {
   if(fixture.score.fulltime != null) {
     return fixture.score.fulltime
