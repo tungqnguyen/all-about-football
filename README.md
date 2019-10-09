@@ -12,6 +12,10 @@ Please visit: http://all-about-football.s3-website-ap-southeast-2.amazonaws.com/
 * [React](https://reactjs.org) - Web framework
 * [Redux](https://redux.js.org/) - State Management
 * AWS - Hosting tool
+## APIs used
+
+* [API-Football](https://www.api-football.com/) - For gathering match results, fixtures and standings.
+* [ScoreBat](https://www.scorebat.com/video-api/) - For gathering latest highlight videos
 
 ## Authors
 * **Tung Nguyen**
