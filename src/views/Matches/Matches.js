@@ -26,8 +26,8 @@ class Matches extends Component {
   }
 
   componentDidMount() {
-    this.props.onGetMatches();
-    this.props.onGetHighlights();
+    // this.props.onGetMatches();
+    // this.props.onGetHighlights();
   }
 
   findNextFixture(matchData) {
@@ -36,7 +36,6 @@ class Matches extends Component {
     for (let i = 0; i < matchData.length; i++) {
       if (new Date(matchData[i]["event_date"]) - today > 0) {
         closest = {
-          match: matchData[i],
           index : i
         }
         return closest
@@ -45,10 +44,11 @@ class Matches extends Component {
   }
   getDisplayFixtures(nearestNextMatch) {
     const { matches} = this.props ;
-    const idx = nearestNextMatch.index;
+    // const idx = nearestNextMatch.index;
+    const idx = nearestNextMatch;
     //check whether there is still enough fixtures to display
     if (idx + 2 <= matches.length - 1) {
-      return [matches[idx-2], matches[idx - 1], nearestNextMatch.match, matches[idx+1],matches[idx+2]]
+      return [matches[idx-2], matches[idx - 1], matches[idx], matches[idx+1],matches[idx+2]]
     }
     return [];
   }
@@ -62,10 +62,13 @@ class Matches extends Component {
   render () {
     let slider = null;
     let highlights = null;
-    if (this.props.fetched) {
-      const nextMatch = this.findNextFixture(this.props.matches);
-      const fixtureArray = this.getDisplayFixtures(nextMatch);
-      slider = <Slider matches = {fixtureArray}/>;
+    if (this.props.nextFixtureIndex) {
+        // this.props.onGetNextFixture(this.props.matches);
+        // if (this.props.nextFixtureIndex) {
+          const fixtureArray = this.getDisplayFixtures(this.props.nextFixtureIndex);
+          slider = <Slider matches = {fixtureArray}/>;
+        // }
+
     }
     if (this.props.fetchedHighlights) {
       highlights = <VideoHighlights highlights={this.props.highlights} toggleModal = {this.toggleModal}/>
@@ -99,16 +102,18 @@ const mapStateToProps = state => {
     matches: state.matches,
     fetched: state.fetched,
     highlights: state.highlights,
-    fetchedHighlights: state.fetchedHighlights
+    fetchedHighlights: state.fetchedHighlights,
+    nextFixtureIndex: state.nextFixtureIndex,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
-    onGetHighlights: () => dispatch(actionCreators.getHighlights())
+    onGetHighlights: () => dispatch(actionCreators.getHighlights()),
+    onGetNextFixture: (matches) => dispatch(actionCreators.getNextFixture(matches)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Matches)
+export default connect(mapStateToProps, null)(Matches)
 

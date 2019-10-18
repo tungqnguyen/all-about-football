@@ -28,17 +28,17 @@ const VideoHighlights = (props) => {
 
   return (
     <div>
-          <div style={{display:'flex', justifyContent:'flex-end'}}>
-      <div style={{marginRight:10, marginBottom:10}}>
-        <img onClick={goPrev} alt="" src={leftArrow} style={{height:30, width:30}}/>
-        <img onClick={goNext} alt="" src={rightArrow} style={{height:30, width:30, marginLeft: 5}}/>
-      </div>  
+      <div style={{display:'flex', justifyContent:'flex-end'}}>
+        <div style={{marginRight:10, marginBottom:10}}>
+          <img onClick={goPrev} alt="" src={leftArrow} style={{height:30, width:30}}/>
+          <img onClick={goNext} alt="" src={rightArrow} style={{height:30, width:30, marginLeft: 5}}/>
+        </div>  
       </div>
-    <Swiper {...params} getSwiper={updateSwiper}>
-      {props.highlights.map((highlight, i) => {
-        return <SwiperHighlight highlight={highlight}/>
-      })}
-    </Swiper>
+      <Swiper {...params} getSwiper={updateSwiper}>
+        {props.highlights.map((highlight, i) => {
+          return <SwiperHighlight highlight={highlight}/>
+        })}
+      </Swiper>
     </div>
   )
 };

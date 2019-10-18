@@ -5,7 +5,8 @@ const initialStates = {
   fetched: false,
   fetchedHighlights: false,
   standings: null,
-  fetchedStandings: false
+  fetchedStandings: false,
+  nextFixtureIndex: null,
 }
 
 const reducer = (state = initialStates, action) => {
@@ -27,6 +28,11 @@ const reducer = (state = initialStates, action) => {
         ...state,
         standings: action.standings,
         fetchedStandings: action.fetchedStandings
+      }
+    case actionTypes.FIND_NEXT_FIXTURE:
+      return {
+        ...state,
+        nextFixtureIndex: action.index,
       }
       default:
         return state;

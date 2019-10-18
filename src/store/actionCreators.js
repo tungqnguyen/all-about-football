@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 import * as actionTypes from './actionTypes';
 import { fixtures, highlights } from '../views/Matches/sampleData'
-import {formatHighlightResponse} from './util'
+import {formatHighlightResponse ,findNext} from './util'
 
 const displayMatch = (matches) => {
   return {
@@ -25,6 +25,13 @@ const displayStandings = (standings) => {
   }
 }
 
+export const getNextFixture = (matches) => {
+  return {
+    type:actionTypes.FIND_NEXT_FIXTURE,
+    index: findNext(matches)
+  }
+}
+
 export const getMatch = () => {
   return dispatch => {
     // do api calls here
@@ -37,6 +44,7 @@ export const getMatch = () => {
     //   dispatch(displayMatch(res.data.api.fixtures))
     // }).catch()
     dispatch(displayMatch(fixtures.api.fixtures));
+    dispatch(getNextFixture(fixtures.api.fixtures))
   }
 }
 

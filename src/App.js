@@ -6,9 +6,15 @@ import Fixture from './views/Fixture/Fixture';
 import Archives from './views/Archives/Archives'
 import Header from './Header/Header';
 import Aux from './hoc/Auxiliary';
+import {connect} from 'react-redux';
+import * as actionCreators from './store/actionCreators';
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onGetMatches();
+    this.props.onGetHighlights();
+  }
   render () {
     return (
       <Aux>
@@ -18,7 +24,7 @@ class App extends Component {
         <Switch>
           <Route path = "/" exact component = {Matches} />
           <Route path ="/tables" component = {Tables} />
-          <Route path = "/fixture" component = {Fixture} />
+          <Route path = "/fixtures" component = {Fixture} />
           <Route path = "/archives" component = {Archives} />
         </Switch>
         </main>
@@ -28,4 +34,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
+    onGetHighlights: () => dispatch(actionCreators.getHighlights()),  
+    // onGetNextFixture: (matches) => dispatch(actionCreators.getNextFixture(matches)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);
