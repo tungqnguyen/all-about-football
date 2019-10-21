@@ -11,3 +11,14 @@ export const matchLogo = (teamName) => {
   })
   return logo[res];
 }
+
+export const displayTimeOrResult = (fixture) => {
+  if(fixture.score.fulltime != null) {
+    return fixture.score.fulltime
+  }
+  else {
+    const time = new Date(fixture["event_date"])
+      .toLocaleTimeString(undefined,{hourCycle: "h24", hour:'2-digit', minute:'2-digit'});  
+      return time;
+    }
+}

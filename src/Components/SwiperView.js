@@ -1,18 +1,9 @@
 import React from 'react';
 import styles from './css/SwiperView.module.css';
-import {matchLogo} from '.././util/util'
+import {matchLogo, displayTimeOrResult} from '.././util/util'
 
 
-const displayTimeOrResult = (fixture) => {
-  if(fixture.score.fulltime != null) {
-    return fixture.score.fulltime
-  }
-  else {
-    const time = new Date(fixture["event_date"])
-      .toLocaleTimeString(undefined,{hourCycle: "h24", hour:'2-digit', minute:'2-digit'});  
-      return time;
-    }
-}
+
 const SwiperView = (props) => {
     const {homeTeam, awayTeam} = props.fixture;
     // console.log('current fixture',props.fixture)

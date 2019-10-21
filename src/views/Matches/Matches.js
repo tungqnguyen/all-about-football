@@ -63,12 +63,8 @@ class Matches extends Component {
     let slider = null;
     let highlights = null;
     if (this.props.nextFixtureIndex) {
-        // this.props.onGetNextFixture(this.props.matches);
-        // if (this.props.nextFixtureIndex) {
           const fixtureArray = this.getDisplayFixtures(this.props.nextFixtureIndex);
           slider = <Slider matches = {fixtureArray}/>;
-        // }
-
     }
     if (this.props.fetchedHighlights) {
       highlights = <VideoHighlights highlights={this.props.highlights} toggleModal = {this.toggleModal}/>
@@ -104,14 +100,6 @@ const mapStateToProps = state => {
     highlights: state.highlights,
     fetchedHighlights: state.fetchedHighlights,
     nextFixtureIndex: state.nextFixtureIndex,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
-    onGetHighlights: () => dispatch(actionCreators.getHighlights()),
-    onGetNextFixture: (matches) => dispatch(actionCreators.getNextFixture(matches)),
   }
 }
 

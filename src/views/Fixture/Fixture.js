@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import * as actionCreators from '../../store/actionCreators';
 import { connect } from 'react-redux';
-import LazyLoad from 'react-lazyload';
-// import InfiniteScroll from 'react-infinite-scroller';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
+import {matchLogo, displayTimeOrResult} from '../../util/util'
+import WithPanel from '../../hoc/WithPanel';
 
 
 class Fixture extends Component {
@@ -17,21 +15,23 @@ class Fixture extends Component {
     }
   }
   componentDidMount() {
-    // this.props.onGetMatches();
   }
   render () {
     let fixture = [];
-    // const fixture = this.props.fixtures.map((fixture, i) => {
     if (this.props.nextFixtureIndex) {
       const {fixtures: matches} = this.props;
+      console.log(matches[80]);
       for (let i= this.props.nextFixtureIndex; i < matches.length; i++) {
         fixture.push (
-          <ListGroupItem>
-              <div style={{display: 'flex'}}>
-                <div> {matches[i].homeTeam['team_name']}</div> 
-                <div>{'hello'}</div> 
-                <div> {matches[i].awayTeam['team_name']}</div>
-              </div>
+          <ListGroupItem style={{background:'#F9FBDC', fontFamily:'Cursive'}}>
+          <div>{new Date(matches[i]["event_date"]).toDateString()}</div>
+          <div style={{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
+            <div style={{margin:7}}> {matches[i].homeTeam['team_name']}</div> 
+            <img src={matchLogo(matches[i].homeTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}} />
+            <div style={{margin:'20px'}}> {displayTimeOrResult(matches[i])} </div>
+            <img src={matchLogo(matches[i].awayTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}}/>
+            <div style={{margin:7}}> {matches[i].awayTeam['team_name']}</div>
+          </div>
           </ListGroupItem>
         )
       // })
@@ -40,14 +40,12 @@ class Fixture extends Component {
 
     return (
       <div style={{height: '50vh'}}>
-      <ListGroup> 
-        {fixture}
-      </ListGroup>
+        <WithPanel style={{marginTop:20, paddingBottom: 30}}>
+        <ListGroup > 
+          {fixture}
+        </ListGroup>
+        </WithPanel>
       </div>
-
-
-
-
     )
   }
 }
