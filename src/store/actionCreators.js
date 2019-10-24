@@ -1,7 +1,8 @@
 import * as axios from 'axios';
 import * as actionTypes from './actionTypes';
 import { fixtures, highlights } from '../views/Matches/sampleData'
-import {formatHighlightResponse ,findNext} from './util'
+import {formatHighlightResponse ,findNext} from './util';
+import Cookies from 'js-cookie';
 
 const displayMatch = (matches) => {
   return {
@@ -69,5 +70,56 @@ export const getStandings = () => {
       console.log('res', res.data);
       dispatch(displayStandings(res.data.api.standings[0]))
     }).catch()
+  }
+}
+
+export const checkAuth = () => {
+  let token = Cookies.get('token')
+  if (token === undefined) {
+    token = false;
+  }
+  return {
+    type:actionTypes.SET_TOKEN,
+    token
+  }
+}
+
+export const signUp = (username, password) => {
+  return dispatch => {
+    console.log('sign up info', username, password)
+    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/register',null,{ params: {
+      username,
+      password
+    }}).then(res => {
+      console.log('res', res);
+      // dispatch(displayStandings(res.data.api.standings[0]))
+      dispatch(signIn(username,password));
+    }).catch((err) => {
+      console.log('err', err);
+    })
+  }
+}
+
+export const signIn = (username, password) => {
+  return dispatch => {
+    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/login',{
+      params: {
+        username,
+        password,
+      },
+    }).then(res => {
+      console.log('res from sign in', res);
+      //save token here
+      Cookies.set('token', res.data.token);
+      dispatch(checkAuth())
+    }).catch()
+  }
+}
+
+export const signOut = () => {
+  Cookies.remove('token');
+  return {
+    type: actionTypes.SET_TOKEN,
+    token: false,
   }
 }

@@ -40,7 +40,7 @@ class Fixture extends Component {
 
     return (
       <div style={{height: '50vh'}}>
-        <WithPanel style={{marginTop:20, paddingBottom: 30}}>
+        <WithPanel style={{marginTop:20, paddingBottom: 30, marginBottom:20}}>
         <ListGroup > 
           {fixture}
         </ListGroup>
@@ -52,9 +52,9 @@ class Fixture extends Component {
 
 const mapStateToProps = state => {
   return {
-    fetched: state.fetched,
-    fixtures: state.matches,
-    nextFixtureIndex: state.nextFixtureIndex,
+    fetched: state.reducer.fetched,
+    fixtures: state.reducer.matches,
+    nextFixtureIndex: state.reducer.nextFixtureIndex,
   }
 }
 

@@ -83,8 +83,8 @@ class Standings extends Component {
 }
 const mapStateToProps = state => {
   return {
-    standings: state.standings,
-    fetchedStandings: state.fetchedStandings,
+    standings: state.reducer.standings,
+    fetchedStandings: state.reducer.fetchedStandings,
   }
 }
 const mapDispatchToProps = dispatch => {

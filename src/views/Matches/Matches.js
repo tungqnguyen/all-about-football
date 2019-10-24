@@ -95,11 +95,11 @@ class Matches extends Component {
 }
 const mapStateToProps = state => {
   return {
-    matches: state.matches,
-    fetched: state.fetched,
-    highlights: state.highlights,
-    fetchedHighlights: state.fetchedHighlights,
-    nextFixtureIndex: state.nextFixtureIndex,
+    matches: state.reducer.matches,
+    fetched: state.reducer.fetched,
+    highlights: state.reducer.highlights,
+    fetchedHighlights: state.reducer.fetchedHighlights,
+    nextFixtureIndex: state.reducer.nextFixtureIndex,
   }
 }
 
