@@ -17,9 +17,9 @@ import southampton from "../assets/logo/southampton.svg";
 import tottenham from "../assets/logo/tottenham.svg";
 import watford from "../assets/logo/watford.svg";
 import westHam from "../assets/logo/westHam.svg";
-import wolverhampton from "../assets/logo/wolverhampton.svg";
+import wolves from "../assets/logo/wolverhampton.svg";
 
 
 export {arsenal, astonVilla, bournemouth,brighton, burnley, chelsea, 
   crystalPalace, everton, leicester, liverpool, manchesterCity, manchesterUnited,
-  newcastleUnited,norwich, sheffield, southampton, tottenham, watford, westHam, wolverhampton};
+  newcastleUnited,norwich, sheffield, southampton, tottenham, watford, westHam, wolves};

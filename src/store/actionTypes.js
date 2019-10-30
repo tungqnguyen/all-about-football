@@ -5,4 +5,5 @@ export const FIND_NEXT_FIXTURE = 'FIND_NEXT_FIXTURE';
 export const SET_TOKEN = 'SET_TOKEN';
 
 export const SIGNUP = 'SIGNUP';
+export const SIGNIN = 'SIGNIN';
 

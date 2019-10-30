@@ -1,17 +1,13 @@
 import React, {useState} from "react";
 import { Link, Redirect } from 'react-router-dom';
-import { Card, Logo, Form, Input, Button } from '../../Components/AuthForm';
+import { Card, Form, Input, Button } from '../../Components/AuthForm';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actionCreators';
 
-const Login = (props) => {
+const Register = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  if (props.isAuthenticated) {
-    console.log('token', props.isAuthenticated);
-    return <Redirect to="/" />;
-  }
   return (
     <Card>
       <Form>
@@ -34,7 +30,6 @@ const Login = (props) => {
         <Button onClick={() => props.signUp(userName, password)}>Sign Up</Button>
       </Form>
       <Link to="/login">Already have an account?</Link>
-        {/* { props.isError && <div>The username or password provided were incorrect!</div> } */}
         {props.isAuthenticated && <Redirect to="/" />}
     </Card>
   );
@@ -52,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

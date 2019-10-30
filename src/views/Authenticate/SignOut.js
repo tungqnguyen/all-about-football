@@ -3,10 +3,16 @@ import {connect} from 'react-redux';
 import * as actionCreators from '../../store/actionCreators';
 
 const SignOut = (props) => {
-  props.signOut();
+  console.log('render');
   return (
-    <div> Log out successfully</div>
-  )
+    <div> sign out success</div>
+    )
+}
+
+const mapStateToProps = state => {
+  return {
+    token: state.authReducer.token
+  }
 }
 const mapDispatchToProps = dispatch => {
   return {
@@ -14,4 +20,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SignOut)
+export default connect(mapStateToProps, mapDispatchToProps)(SignOut)

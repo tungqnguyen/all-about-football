@@ -7,11 +7,9 @@ const initialStates = {
 
 const reducer = (state = initialStates, action) => {
   switch (action.type) {
-    case actionTypes.SIGNUP:
+    case actionTypes.SIGNIN:
       return {
         ...state,
-        token: action.token,
-        isError: action.isError,
       }
     case actionTypes.SET_TOKEN:
       return {

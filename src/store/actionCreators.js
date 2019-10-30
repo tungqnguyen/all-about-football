@@ -83,16 +83,18 @@ export const checkAuth = () => {
     token
   }
 }
+const setToken = (token) => {
+  return {
+    type: actionTypes.SET_TOKEN,
+    token
+  }
+}
 
 export const signUp = (username, password) => {
   return dispatch => {
     console.log('sign up info', username, password)
-    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/register',null,{ params: {
-      username,
-      password
-    }}).then(res => {
+    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/register',{username, password}).then(res => {
       console.log('res', res);
-      // dispatch(displayStandings(res.data.api.standings[0]))
       dispatch(signIn(username,password));
     }).catch((err) => {
       console.log('err', err);
@@ -102,24 +104,30 @@ export const signUp = (username, password) => {
 
 export const signIn = (username, password) => {
   return dispatch => {
-    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/login',{
-      params: {
-        username,
-        password,
-      },
-    }).then(res => {
+    axios.post('https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/login',{username, password}).then(res => {
       console.log('res from sign in', res);
       //save token here
       Cookies.set('token', res.data.token);
-      dispatch(checkAuth())
+      dispatch(setToken(res.data.token));
     }).catch()
   }
 }
 
 export const signOut = () => {
-  Cookies.remove('token');
-  return {
-    type: actionTypes.SET_TOKEN,
-    token: false,
+  const token = Cookies.get('token');
+  console.log('token b4 sign out', token );
+  return dispatch => {
+    axios.post(`https://whgiwsgzff.execute-api.ap-southeast-2.amazonaws.com/dev/user/logout`,null, {
+      headers: {
+        Authorization: token
+      }
+    }).then(res => {
+      console.log('log out success');
+      Cookies.remove('token');
+      dispatch(setToken(false));
+    }).catch(error => {
+      Cookies.remove('token');
+      console.log('error logout')
+    })
   }
 }

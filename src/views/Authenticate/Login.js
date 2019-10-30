@@ -1,20 +1,37 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import { Card, Logo, Form, Input, Button } from '../../Components/AuthForm';
+import React, {useState}from "react";
+import { Link, Redirect } from 'react-router-dom';
+import { Card, Form, Input, Button } from '../../Components/AuthForm';
+import {connect} from 'react-redux';
+import * as actionCreators from '../../store/actionCreators';
 
-function Signup() {
+const Login = (props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <Card>
-      {/* <Logo src={logoImg} /> */}
       <Form>
-        <Input type="email" placeholder="email" />
-        <Input type="password" placeholder="password" />
-        <Input type="password" placeholder="password again" />
-        <Button>Sign Up</Button>
+        <Input type="username" placeholder="username" value={username}
+          onChange= {e => setUsername(e.target.value)}/>
+        <Input type="password" placeholder="password" value={password}
+          onChange= {e => setPassword(e.target.value)} />
+        <Button onClick={() => props.signIn(username, password)}>Sign In</Button>
       </Form>
-      <Link to="/login">Already have an account?</Link>
+      <Link to="/register">Don't have an account?</Link>
+      {props.isAuthenticated && <Redirect to="/" />}
     </Card>
   );
 }
 
-export default Signup;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.authReducer.token
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (username, password) => dispatch(actionCreators.signIn(username, password))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

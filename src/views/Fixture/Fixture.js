@@ -20,7 +20,6 @@ class Fixture extends Component {
     let fixture = [];
     if (this.props.nextFixtureIndex) {
       const {fixtures: matches} = this.props;
-      console.log(matches[80]);
       for (let i= this.props.nextFixtureIndex; i < matches.length; i++) {
         fixture.push (
           <ListGroupItem style={{background:'#F9FBDC', fontFamily:'Cursive'}}>
@@ -55,12 +54,6 @@ const mapStateToProps = state => {
     fetched: state.reducer.fetched,
     fixtures: state.reducer.matches,
     nextFixtureIndex: state.reducer.nextFixtureIndex,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onGetMatches: dispatch(actionCreators.getMatch())
   }
 }
 

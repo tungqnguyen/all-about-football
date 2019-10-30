@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   // const {isAuthenticated} = useAuth();
-  console.log('hi', rest.isAuthenticated);
+  console.log('hi', rest);
   return (
     <Route
       {...rest}

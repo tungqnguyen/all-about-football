@@ -11,10 +11,8 @@ class Standings extends Component {
   }
   render() {
     if(this.props.fetchedStandings){
-      console.log('standings', this.props.standings);
     }
     const renderForm = (forme) => {
-      console.log('run', forme.split(''))
       return forme.split('').map(el => {
         let dom = null;
         if(el === 'W') {

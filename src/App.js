@@ -13,9 +13,6 @@ import Register from './views/Authenticate/Register';
 import Login from './views/Authenticate/Login';
 import SignOut from './views/Authenticate/SignOut';
 
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -24,23 +21,22 @@ class App extends Component {
     }
   }
   componentWillMount() {
-    this.props.checkAuth();
+    // this.props.checkAuth();
   }
   //data leakage here since we havent sign in yet but already got data
   componentDidMount() {
-    this.props.onGetMatches();
-    this.props.onGetHighlights();
+    this.props.checkAuth();
   }
   render () {
+    if(this.props.token) {
+      this.props.onGetMatches();
+      this.props.onGetHighlights();
+    }
     return (
         <Aux>
           <Header/>
           <main>
           <Switch>
-            {/* <Route path = "/" exact component = {Matches} /> */}
-            {/* <Route path ="/tables" component = {Tables} />
-            <Route path = "/fixtures" component = {Fixture} />
-            <Route path = "/archives" component = {Archives} /> */}
             <PrivateRoute path="/"  exact component={Matches} />
             <PrivateRoute path="/tables"  exact component={Tables} />
             <PrivateRoute path="/fixtures"  exact component={Fixture} />
@@ -66,7 +62,6 @@ const mapDispatchToProps = dispatch => {
     onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
     onGetHighlights: () => dispatch(actionCreators.getHighlights()),  
     checkAuth: () => dispatch(actionCreators.checkAuth()),
-    // onGetNextFixture: (matches) => dispatch(actionCreators.getNextFixture(matches)),
   }
 }
 
