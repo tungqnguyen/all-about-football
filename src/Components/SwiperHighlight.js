@@ -6,6 +6,7 @@ import playButton from '../assets/img/play-button.svg'
 
 const SwiperHighlight = (props) => {
 	const {embed, title} = props.highlight;
+	console.log('highlight',  props.highlight);
   return ( 
 		<MatchContext.Consumer>
 			{(context) => 

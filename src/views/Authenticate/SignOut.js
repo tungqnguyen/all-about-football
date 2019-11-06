@@ -5,7 +5,7 @@ import * as actionCreators from '../../store/actionCreators';
 const SignOut = (props) => {
   console.log('render');
   return (
-    <div> sign out success</div>
+    <div style={{fontFamily: "cursive", fontSize:18, justifyContent:'center', display:'flex', padding:50}}> Sign out success, please log in again to explore more content :)</div>
     )
 }
 

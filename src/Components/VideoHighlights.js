@@ -5,6 +5,7 @@ import leftArrow from '../assets/img/left1.svg';
 import rightArrow from '../assets/img/right1.svg';
 
 const VideoHighlights = (props) => {
+  console.log('all hlight', props);
   const params = {
     slidesPerView: 4,
     slidesPerColumn: 2,
