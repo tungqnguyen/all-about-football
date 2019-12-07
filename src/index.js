@@ -15,10 +15,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(combineReducers({reducer, authReducer}), composeEnhancers(
   applyMiddleware(thunk)
 ));
-// import 'bootstrap/dist/css/bootstrap.css';
-// import "./assets/vendor/nucleo/css/nucleo.css";
-// import "./assets/vendor/font-awesome/css/font-awesome.min.css";
-// import "./assets/css/argon-design-system-react.css";
 
 const app = (
   <Provider store={store}>

@@ -23,7 +23,7 @@ class App extends Component {
   componentWillMount() {
     // this.props.checkAuth();
   }
-  //data leakage here since we havent sign in yet but already got data
+  //data leakage here since we havent sign in yet but already got data from render()
   componentDidMount() {
     this.props.checkAuth();
   }
@@ -31,6 +31,7 @@ class App extends Component {
     if(this.props.token) {
       this.props.onGetMatches();
       this.props.onGetHighlights();
+      this.props.onGetCollection();
     }
     return (
         <Aux>
@@ -61,6 +62,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
     onGetHighlights: () => dispatch(actionCreators.getHighlights()),  
+    onGetCollection: () => dispatch(actionCreators.getCollection()),
     checkAuth: () => dispatch(actionCreators.checkAuth()),
   }
 }

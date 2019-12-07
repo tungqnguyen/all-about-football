@@ -3,8 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  // const {isAuthenticated} = useAuth();
-  console.log('hi', rest);
+  // console.log('hi', rest);
   return (
     <Route
       {...rest}
@@ -25,10 +24,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // onGetMatches: dispatch(actionCreators.getMatch())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute)
+export default connect(mapStateToProps, null)(PrivateRoute)

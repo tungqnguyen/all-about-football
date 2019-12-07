@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import * as actionCreators from '../../store/actionCreators';
 import { connect } from 'react-redux';
 import {matchLogo, displayTimeOrResult} from '../../util/util'
 import WithPanel from '../../hoc/WithPanel';
@@ -14,8 +13,7 @@ class Fixture extends Component {
 
     }
   }
-  componentDidMount() {
-  }
+
   render () {
     let fixture = [];
     if (this.props.nextFixtureIndex) {

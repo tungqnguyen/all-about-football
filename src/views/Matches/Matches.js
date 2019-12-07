@@ -2,9 +2,7 @@ import React, {Component} from 'react'
 import Slider from '../../Components/Slider'
 import VideoHighlights from '../../Components/VideoHighlights'
 import { connect } from 'react-redux';
-import * as actionCreators from '../../store/actionCreators';
 import VideoModal from '../../Components//VideoModal';
-// import VideoModal1 from '../../Components//VideoModal1';
 import MatchContext from '../../context/MatchContext';
 import WithPanel from '../../hoc/WithPanel';
 
@@ -21,6 +19,7 @@ class Matches extends Component {
       modal:false,
       currentHighlight:`<div></div>`,
       title:null,
+      videoIndex: -1,
     }
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -52,11 +51,13 @@ class Matches extends Component {
     }
     return [];
   }
-  toggleModal(embed=`<div></div>`, title=null){
+
+  toggleModal(index= -1, embed=`<div></div>`){
     this.setState({
       modal: !this.state.modal,
-      currentHighlight: embed,
-      title
+      currentHighlight: this.props.highlights[index].embed,
+      title: this.props.highlights[index].title,
+      videoIndex: index
     })
   }
   render () {
@@ -73,7 +74,9 @@ class Matches extends Component {
       <div style={{fontFamily:'Cursive'}}>
         <VideoModal toggleModal={this.toggleModal} modal={this.state.modal} 
               video={{ currentHighlight:this.state.currentHighlight,
-              title:this.state.title }}/>
+                    title:this.state.title }}
+              videoIndex = {this.state.videoIndex}
+                    />
         <WithPanel style={{marginTop:20, paddingBottom: 30}}>
           <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
             Upcoming Matches

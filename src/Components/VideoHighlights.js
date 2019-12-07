@@ -5,7 +5,7 @@ import leftArrow from '../assets/img/left1.svg';
 import rightArrow from '../assets/img/right1.svg';
 
 const VideoHighlights = (props) => {
-  console.log('all hlight', props);
+  // console.log('all hlight', props);
   const params = {
     slidesPerView: 4,
     slidesPerColumn: 2,
@@ -37,7 +37,7 @@ const VideoHighlights = (props) => {
       </div>
       <Swiper {...params} getSwiper={updateSwiper}>
         {props.highlights.map((highlight, i) => {
-          return <SwiperHighlight highlight={highlight}/>
+          return <SwiperHighlight highlight={highlight} index = {i}/>
         })}
       </Swiper>
     </div>

@@ -4,9 +4,11 @@ const initialStates = {
   matches: null,
   fetched: false,
   fetchedHighlights: false,
-  standings: null,
   fetchedStandings: false,
+  fetchedUserVideos: false,
+  standings: null,
   nextFixtureIndex: null,
+  userVideos: null,
 }
 
 const reducer = (state = initialStates, action) => {
@@ -29,13 +31,19 @@ const reducer = (state = initialStates, action) => {
         standings: action.standings,
         fetchedStandings: action.fetchedStandings
       }
+    case actionTypes.DISPLAY_COLLECTION:
+      return {
+        ...state,
+        fetchedUserVideos: action.fetchedUserVideos,
+        userVideos: action.userVideos,
+      }
     case actionTypes.FIND_NEXT_FIXTURE:
       return {
         ...state,
         nextFixtureIndex: action.index,
       }
-      default:
-        return state;
+    default:
+      return state;
   }
 };
 
