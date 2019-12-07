@@ -52,7 +52,7 @@ class Matches extends Component {
     return [];
   }
 
-  toggleModal(index= -1, embed=`<div></div>`){
+  toggleModal(index, embed=`<div></div>`){
     this.setState({
       modal: !this.state.modal,
       currentHighlight: this.props.highlights[index].embed,

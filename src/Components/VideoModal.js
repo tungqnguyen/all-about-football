@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../store/actionCreators';
 
 class VideoModal extends React.Component {
+
+  componentDidMount() {
+    console.log('modal props', this.props);
+  }
   render() {
     return (
       <div>
@@ -19,7 +23,7 @@ class VideoModal extends React.Component {
           </div>
         <ModalFooter>
           <Button color="primary" onClick={() => this.props.saveToCollection(this.props.videoIndex)}>Save As Favorite</Button>{' '}
-          <Button color="secondary" onClick={()=> this.props.toggleModal()}>Cancel</Button>
+          <Button color="secondary" onClick={()=> this.props.toggleModal(this.props.videoIndex)}>Cancel</Button>
         </ModalFooter>
         </Modal>
       </div>

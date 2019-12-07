@@ -6,29 +6,37 @@ import MatchContext from '../../context/MatchContext';
 import VideoHighlights from '../../Components/VideoHighlights';
 
 const Archives = (props) => {
-  const [modal, setModal] = useState({modal: false})
-  const [highlight, setHighLight] =  useState({highlight: null})
-  // useEffect(() => {
+  const [modal, setModal] = useState({toggleModal: false, highlight: `<div></div>`, title: null, videoIndex: -1})
 
-  // }, highlight)
-  const toggleModal = (embed=`<div></div>`, title=null) => {
+  const toggleModal = (index, embed=`<div></div>`) => {
+    // console.log('clicked ', props.userVideos);
     setModal({
-      modal: !modal,
+      toggleModal: !modal.toggleModal,
+      highlight: props.userVideos[index].videoObject.embed,
+      title: props.userVideos[index].videoObject.title,
+      videoIndex: index
     })
-    setHighLight({
-      highlight: embed
+
+  }
+
+  const extractVideoScripts = (userVideos) => {
+    return userVideos.map(el => {
+      return el.videoObject
     })
   }
   let highlights = null
   if (props.fetchedUserVideos) {
-    console.log('true');
-    highlights = <VideoHighlights highlights={props.userVideos}/>
+    // console.log('true', props.userVideos);
+
+    highlights = <VideoHighlights highlights={extractVideoScripts(props.userVideos)}/>
   }
   return (
     <div>
-      <VideoModal toggleModal={toggleModal} modal={modal} 
-                video={{ currentHighlight:highlight,
-                title: null }}/>    
+        <VideoModal toggleModal={toggleModal} modal={modal.toggleModal} 
+              video={{ currentHighlight:modal.highlight,
+                    title:modal.title }}
+              videoIndex = {modal.videoIndex}
+                    />   
       <WithPanel style={{marginTop:20, paddingBottom: 30}}>
         <div style={{textAlign:'center', marginBottom:10, fontSize:22}}>
           Your Favorite Highlights
