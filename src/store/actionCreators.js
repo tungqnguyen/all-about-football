@@ -8,21 +8,21 @@ const displayMatch = (matches) => {
   return {
     type: actionTypes.DISPLAY_MATCH,
     matches,
-    fetched: true,
+    // fetched: true,
   }
 }
 const displayHighlights = (highlights) => {
   return {
     type: actionTypes.DISPLAY_HIGHLIGHTS,
     highlights,
-    fetchedHighlights: true,
+    // fetchedHighlights: true,
   }
 }
 const displayStandings = (standings) => {
   return {
     type: actionTypes.DISPLAY_STANDINGS,
     standings,
-    fetchedStandings: true,
+    // fetchedStandings: true,
   }
 }
 
@@ -172,6 +172,10 @@ export const saveToCollection = (videoIndex) => {
         headers: { "Authorization": `JWT ${token}` },
       }).then(res => {
         console.log('res save video ', res.data);
+        dispatch({
+          type: actionTypes.ADD_VIDEO,
+          video: res.data.video
+        })
       })
     }
 
@@ -195,6 +199,5 @@ const displayCollection = (userVideos) => {
   return {
     type: actionTypes.DISPLAY_COLLECTION,
     userVideos,
-    fetchedUserVideos: true,
   }
 }

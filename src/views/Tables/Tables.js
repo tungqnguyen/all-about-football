@@ -10,8 +10,6 @@ class Standings extends Component {
     this.props.onGetStandings();
   }
   render() {
-    if(this.props.fetchedStandings){
-    }
     const renderForm = (forme) => {
       return forme.split('').map(el => {
         let dom = null;
@@ -48,7 +46,7 @@ class Standings extends Component {
           </thead>
           <tbody>
           { 
-            (this.props.fetchedStandings) ?
+            (this.props.standings != null) ?
               this.props.standings.map((el)=>{
                 return (  
                   <tr>
@@ -82,7 +80,7 @@ class Standings extends Component {
 const mapStateToProps = state => {
   return {
     standings: state.reducer.standings,
-    fetchedStandings: state.reducer.fetchedStandings,
+    // fetchedStandings: state.reducer.fetchedStandings,
   }
 }
 const mapDispatchToProps = dispatch => {

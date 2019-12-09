@@ -21,14 +21,14 @@ class Fixture extends Component {
       for (let i= this.props.nextFixtureIndex; i < matches.length; i++) {
         fixture.push (
           <ListGroupItem style={{background:'#F9FBDC', fontFamily:'Cursive'}}>
-          <div>{new Date(matches[i]["event_date"]).toDateString()}</div>
-          <div style={{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
-            <div style={{margin:7}}> {matches[i].homeTeam['team_name']}</div> 
-            <img src={matchLogo(matches[i].homeTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}} />
-            <div style={{margin:'20px'}}> {displayTimeOrResult(matches[i])} </div>
-            <img src={matchLogo(matches[i].awayTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}}/>
-            <div style={{margin:7}}> {matches[i].awayTeam['team_name']}</div>
-          </div>
+            <div>{new Date(matches[i]["event_date"]).toDateString()}</div>
+            <div style={{width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
+              <div style={{margin:7}}> {matches[i].homeTeam['team_name']}</div> 
+              <img src={matchLogo(matches[i].homeTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}} />
+              <div style={{margin:'20px'}}> {displayTimeOrResult(matches[i])} </div>
+              <img src={matchLogo(matches[i].awayTeam["team_name"])} alt="" style={{width:'50px', height:'50px'}}/>
+              <div style={{margin:7}}> {matches[i].awayTeam['team_name']}</div>
+            </div>
           </ListGroupItem>
         )
       // })
@@ -49,7 +49,7 @@ class Fixture extends Component {
 
 const mapStateToProps = state => {
   return {
-    fetched: state.reducer.fetched,
+    // fetched: state.reducer.fetched,
     fixtures: state.reducer.matches,
     nextFixtureIndex: state.reducer.nextFixtureIndex,
   }

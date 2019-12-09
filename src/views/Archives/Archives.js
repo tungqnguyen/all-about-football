@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import VideoModal from '../../Components/VideoModal';
 import WithPanel from '../../hoc/WithPanel';
@@ -6,7 +6,11 @@ import MatchContext from '../../context/MatchContext';
 import VideoHighlights from '../../Components/VideoHighlights';
 
 const Archives = (props) => {
+  console.log('rerender bitch');
   const [modal, setModal] = useState({toggleModal: false, highlight: `<div></div>`, title: null, videoIndex: -1})
+  useEffect(() => {
+    console.log('prop changes ', props.userVideos);
+  },[props.userVideos])
 
   const toggleModal = (index, embed=`<div></div>`) => {
     // console.log('clicked ', props.userVideos);
@@ -16,19 +20,19 @@ const Archives = (props) => {
       title: props.userVideos[index].videoObject.title,
       videoIndex: index
     })
-
   }
 
   const extractVideoScripts = (userVideos) => {
+    console.log('run extract');
     return userVideos.map(el => {
       return el.videoObject
     })
   }
   let highlights = null
-  if (props.fetchedUserVideos) {
-    // console.log('true', props.userVideos);
-
-    highlights = <VideoHighlights highlights={extractVideoScripts(props.userVideos)}/>
+  if (props.userVideos != null) {
+    console.log('in if ');
+    const userVideos = extractVideoScripts(props.userVideos);
+    highlights = <VideoHighlights highlights={userVideos}/>
   }
   return (
     <div>
@@ -51,7 +55,7 @@ const Archives = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    fetchedUserVideos: state.reducer.fetchedUserVideos,
+    // fetchedUserVideos: state.reducer.fetchedUserVideos,
     userVideos: state.reducer.userVideos,
   }
 }

@@ -67,7 +67,7 @@ class Matches extends Component {
           const fixtureArray = this.getDisplayFixtures(this.props.nextFixtureIndex);
           slider = <Slider matches = {fixtureArray}/>;
     }
-    if (this.props.fetchedHighlights) {
+    if (this.props.highlights != null) {
       highlights = <VideoHighlights highlights={this.props.highlights} toggleModal = {this.toggleModal}/>
     }
     return (
@@ -99,9 +99,9 @@ class Matches extends Component {
 const mapStateToProps = state => {
   return {
     matches: state.reducer.matches,
-    fetched: state.reducer.fetched,
+    // fetched: state.reducer.fetched,
     highlights: state.reducer.highlights,
-    fetchedHighlights: state.reducer.fetchedHighlights,
+    // fetchedHighlights: state.reducer.fetchedHighlights,
     nextFixtureIndex: state.reducer.nextFixtureIndex,
   }
 }
