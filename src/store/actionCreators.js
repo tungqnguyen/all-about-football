@@ -8,31 +8,31 @@ const displayMatch = (matches) => {
   return {
     type: actionTypes.DISPLAY_MATCH,
     matches,
-    // fetched: true,
   }
 }
 const displayHighlights = (highlights) => {
   return {
     type: actionTypes.DISPLAY_HIGHLIGHTS,
     highlights,
-    // fetchedHighlights: true,
   }
 }
 const displayStandings = (standings) => {
   return {
     type: actionTypes.DISPLAY_STANDINGS,
     standings,
-    // fetchedStandings: true,
   }
 }
 
 export const getNextFixture = (matches) => {
   return {
     type: actionTypes.FIND_NEXT_FIXTURE,
-    index: findNext(matches)
+    // index: findNext(matches)
+    index: findNext(fixtures.api.fixtures)
   }
 }
 
+//country code England: GB 
+//C1: 530
 export const getMatch = () => {
   return dispatch => {
     // do api calls here
@@ -45,7 +45,9 @@ export const getMatch = () => {
     //   dispatch(displayMatch(res.data.api.fixtures))
     // }).catch()
     dispatch(displayMatch(fixtures.api.fixtures));
-    dispatch(getNextFixture(fixtures.api.fixtures))
+    
+    //separation of concern here
+    // dispatch(getNextFixture(fixtures.api.fixtures))
   }
 }
 

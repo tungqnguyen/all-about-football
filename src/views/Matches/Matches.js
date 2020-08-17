@@ -24,11 +24,6 @@ class Matches extends Component {
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.onGetMatches();
-    // this.props.onGetHighlights();
-  }
-
   findNextFixture(matchData) {
     const today = new Date();
     let closest = null;
@@ -99,9 +94,7 @@ class Matches extends Component {
 const mapStateToProps = state => {
   return {
     matches: state.reducer.matches,
-    // fetched: state.reducer.fetched,
     highlights: state.reducer.highlights,
-    // fetchedHighlights: state.reducer.fetchedHighlights,
     nextFixtureIndex: state.reducer.nextFixtureIndex,
   }
 }

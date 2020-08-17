@@ -8,7 +8,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={routeProps =>
-        rest.isAuthenticated ? (
+        //bypassing authentication
+        // rest.isAuthenticated ? (
+        true ? (
           <Component {...routeProps} />
         ) : (
           <Redirect to="/register" />

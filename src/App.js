@@ -32,6 +32,7 @@ class App extends Component {
       this.props.onGetMatches();
       this.props.onGetHighlights();
       this.props.onGetCollection();
+      this.props.onGetNextFixture();
     }
     return (
         <Aux>
@@ -54,7 +55,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.authReducer.token
+    // token: state.authReducer.token
+    token: true
   }
 }
 
@@ -63,6 +65,7 @@ const mapDispatchToProps = dispatch => {
     onGetMatches: (leagueName) => dispatch(actionCreators.getMatch()),
     onGetHighlights: () => dispatch(actionCreators.getHighlights()),  
     onGetCollection: () => dispatch(actionCreators.getCollection()),
+    onGetNextFixture: () => dispatch(actionCreators.getNextFixture()),  
     checkAuth: () => dispatch(actionCreators.checkAuth()),
   }
 }
