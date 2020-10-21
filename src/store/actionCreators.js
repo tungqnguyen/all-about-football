@@ -33,6 +33,7 @@ export const getNextFixture = (matches) => {
 
 //country code England: GB 
 //C1: 530
+//PL-2021: league_id: 2790
 export const getMatch = () => {
   return dispatch => {
     // do api calls here
@@ -45,9 +46,6 @@ export const getMatch = () => {
     //   dispatch(displayMatch(res.data.api.fixtures))
     // }).catch()
     dispatch(displayMatch(fixtures.api.fixtures));
-    
-    //separation of concern here
-    // dispatch(getNextFixture(fixtures.api.fixtures))
   }
 }
 
@@ -64,7 +62,7 @@ export const getHighlights = () => {
 
 export const getStandings = () => {
   return dispatch => {
-    axios.get('https://api-football-v1.p.rapidapi.com/v2/leagueTable/524', {
+    axios.get('https://api-football-v1.p.rapidapi.com/v2/leagueTable/2790', {
       headers: {
         'X-RapidAPI-Key': 'a1007753bfmsh4f138cfdecab7d3p101053jsne808a78c8134'
       }

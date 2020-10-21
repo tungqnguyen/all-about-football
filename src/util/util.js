@@ -1,14 +1,16 @@
 
 import * as logo from './teamNameToAssetMap';
 
+//return a logo in asset
 export const matchLogo = (teamName) => {
-  const tmp = teamName.replace(/\s+/g,'').toLowerCase();
-  const res = Object.keys(logo).reduce((match, keyName) => {
-    if (tmp.includes(keyName.toLowerCase()) || keyName.toLowerCase().includes(tmp)) {
+  const refinedTeamName = teamName.replace(/\s+/g,'').toLowerCase();
+  // console.log('teamname', refinedTeamName)
+  const res = Object.keys(logo).reduce((found, keyName) => {
+    if (refinedTeamName.includes(keyName.toLowerCase()) || keyName.toLowerCase().includes(refinedTeamName)) {
       return keyName;
     }
-    else return match;
-  })
+    else return found;
+  }, null)
   return logo[res];
 }
 

@@ -13,9 +13,6 @@ export const findNext = (matches) => {
   let closest = null;
   for (let i = 0; i < matches.length; i++) {
     if (new Date(matches[i]["event_date"]) - today > 0) {
-      // closest = {
-      //   index : i
-      // }
       closest = i;
       return closest
     }

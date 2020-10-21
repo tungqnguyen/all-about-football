@@ -8,7 +8,6 @@ import WithPanel from '../../hoc/WithPanel';
 
 class Matches extends Component {
   static getDerivedStateFromProps(props, state) {
-    // console.log('change', props.matches);
     return state;
   }
 
@@ -38,10 +37,9 @@ class Matches extends Component {
   }
   getDisplayFixtures(nearestNextMatch) {
     const { matches} = this.props ;
-    // const idx = nearestNextMatch.index;
     const idx = nearestNextMatch;
     //check whether there is still enough fixtures to display
-    if (idx + 2 <= matches.length - 1) {
+    if (idx <= matches.length - 1) {
       return [matches[idx-2], matches[idx - 1], matches[idx], matches[idx+1],matches[idx+2]]
     }
     return [];
@@ -59,11 +57,17 @@ class Matches extends Component {
     let slider = null;
     let highlights = null;
     if (this.props.nextFixtureIndex) {
-          const fixtureArray = this.getDisplayFixtures(this.props.nextFixtureIndex);
+          const fixtureArray = this.getDisplayFixtures(this.props.nextFixtureIndex).filter(el => el != undefined);
+          // console.log("next", fixtureArray, this.props.nextFixtureIndex);
           slider = <Slider matches = {fixtureArray}/>;
+    } else {
+      slider =<div>There are no upcoming matches, stay tuned!!</div>
     }
+
     if (this.props.highlights != null) {
       highlights = <VideoHighlights highlights={this.props.highlights} toggleModal = {this.toggleModal}/>
+    } else {
+      highlights = <div> We don't have anything new to show you today :( </div>
     }
     return (
       <div style={{fontFamily:'Cursive'}}>

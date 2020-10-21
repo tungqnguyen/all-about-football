@@ -52,7 +52,7 @@ class Standings extends Component {
                   <tr>
                     <th scope="row">{el.rank}</th>
                     <td>
-                      <img alt="" src={matchLogo(el.teamName)} style={{height:40, width:30}}/> {el.teamName}
+                      <img alt="" src={matchLogo(el.teamName) ?? el.logo} style={{height:30, width:30}}/> {el.teamName}
                     </td>
                     <td>{el.points}</td>
                     <td>{el.all.matchsPlayed}</td>

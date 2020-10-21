@@ -12,9 +12,9 @@ const SwiperView = (props) => {
       <div className={`${styles.swiperView} swiper-slide `}>
         <div style={{height:'20%'}}>{date}</div>
         <div className={styles.matchInfo}>
-            <img src={matchLogo(homeTeam["team_name"])} alt="" className={styles.iconLogo} />
+            <img src={matchLogo(homeTeam["team_name"])?? homeTeam.logo} alt="" className={styles.iconLogo} />
             <div style={{margin:'20px'}}> {displayTimeOrResult(props.fixture)} </div>
-            <img src={matchLogo(awayTeam["team_name"])} alt="" className={styles.iconLogo}/>
+            <img src={matchLogo(awayTeam["team_name"])?? awayTeam.logo} alt="" className={styles.iconLogo}/>
         </div>
         <div style={{textAlign:'center'}}>{homeTeam["team_name"]} - {awayTeam["team_name"]}</div>
       </div>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Swiper from 'react-id-swiper';
 import SwiperHighlight from './SwiperHighlight'
 import leftArrow from '../assets/img/left1.svg';
@@ -11,16 +11,18 @@ const VideoHighlights = (props) => {
     slidesPerColumn: 2,
     spaceBetween: 30,
     pagination: {
-      el: '.swiper-pagination',
+      el: ".swiper-pagination",
       clickable: true,
     },
   }
   const [swiper, updateSwiper] = useState(null);
+
   const goNext = () => {
     if (swiper !== null) {
       swiper.slideNext();
     }
   };
+
   const goPrev = () => {
     if (swiper !== null) {
       swiper.slidePrev();

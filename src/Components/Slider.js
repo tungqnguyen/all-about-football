@@ -12,6 +12,7 @@ const Slider = (props) => {
     spaceBetween: 30,
     pagination: {
       el: '.swiper-pagination',
+      type:'bullets',
       clickable: true,
     },
   }
