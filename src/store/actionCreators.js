@@ -39,7 +39,7 @@ export const getMatch = () => {
     // do api calls here
     // axios.get('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/524',{
     //   headers: {
-    //     'X-RapidAPI-Key': 'a1007753bfmsh4f138cfdecab7d3p101053jsne808a78c8134'
+    //     'X-RapidAPI-Key': process.env.REACT_APP_API_KEY
     //   }
     // }).then(res => {
     //   console.log('res', res);
@@ -64,7 +64,7 @@ export const getStandings = () => {
   return dispatch => {
     axios.get('https://api-football-v1.p.rapidapi.com/v2/leagueTable/2790', {
       headers: {
-        'X-RapidAPI-Key': 'a1007753bfmsh4f138cfdecab7d3p101053jsne808a78c8134'
+        'X-RapidAPI-Key': process.env.REACT_APP_API_KEY
       }
     }).then(res => {
       console.log('res', res.data);
